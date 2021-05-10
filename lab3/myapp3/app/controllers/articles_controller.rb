@@ -5,6 +5,7 @@ class ArticlesController < ApplicationController
 
   def index
     @articles = Article.all
+    render :json =>  @articles 
   end
 
   def indexweb1
@@ -15,7 +16,7 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
-    # authorize! :read, @article
+    authorize! :read, @article
   end
 
   def new
