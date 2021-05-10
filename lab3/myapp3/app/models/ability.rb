@@ -9,7 +9,7 @@ class Ability
     # can :read,Article, public: true
 
     if user.present?  # additional permissions for logged in users (they can read their own posts)
-      can :read, Article , userid: user.id
+      can :manage, Article , userid: user.id
       # can :edit, Article, userid: user.id
     end  
 

@@ -11,12 +11,12 @@ class ArticlesController < ApplicationController
   def indexweb1
     @articles = Article.all
     render :json =>  @articles 
-    render json: { article: @articles, token: @token }, status: :created
+    # render json: { article: @articles, token: @token }, status: :created
   end
 
   def show
     @article = Article.find(params[:id])
-    authorize! :read, @article
+    # authorize! :read, @article
   end
 
   def new
