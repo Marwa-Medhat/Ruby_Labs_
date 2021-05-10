@@ -1,17 +1,24 @@
 class ArticlesController < ApplicationController
+  load_and_authorize_resource
   before_action :set_article, only: %i[ show edit update destroy ]
+ 
 
   def index
     @articles = Article.all
+    # render :json =>  @articles
   end
 
   def show
     @article = Article.find(params[:id])
+    authorize! :read, @article
   end
 
   def new
     @name=params["name"]
     @article = Article.new
+  
+
+
   end
 
   # GET /articles/1/edit
@@ -22,6 +29,9 @@ class ArticlesController < ApplicationController
   # POST /articles or /articles.json
   def create
     @article = Article.new(article_params)
+    @article.userid=current_user.id
+    puts "****************#{current_user.id}**********************************"
+    puts "****************#{@article.userid}**********************************"
     if @article.save
       redirect_to @article
     else
@@ -32,6 +42,7 @@ class ArticlesController < ApplicationController
   # PATCH/PUT /articles/1 or /articles/1.json
   def update
     @article = Article.find(params[:id])
+    # authorize! :edit, @article
  
   if @article.update(article_params)
     redirect_to @article
