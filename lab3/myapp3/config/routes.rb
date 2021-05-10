@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root 'welcome#index'
-  # get 'api/articles', to: "articles#indexweb1"
+  get 'api/articles', to: "articles#indexweb1"
 
   devise_for :users
   # resources :articles

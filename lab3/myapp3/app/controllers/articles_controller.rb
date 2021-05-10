@@ -1,11 +1,14 @@
 class ArticlesController < ApplicationController
   load_and_authorize_resource
+  # before_action :authorized, only:[:indexweb1]
+  # load_and_authorize_resource
+  before_action :authorized, only:[:indexweb1]
   before_action :set_article, only: %i[ show edit update destroy ]
  
 
   def index
     @articles = Article.all
-    render :json =>  @articles 
+    # render :json =>  @articles 
   end
 
   def indexweb1
