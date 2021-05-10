@@ -7,11 +7,14 @@ class Ability
     # Define abilities for the passed in user here. For example:
     
     # can :read,Article, public: true
-
-    if user.present?  # additional permissions for logged in users (they can read their own posts)
-      can :manage, Article , userid: user.id
-      # can :edit, Article, userid: user.id
-    end  
+    user ||= User.new
+    #if user_signed_in?
+    can :manage, Article , userid: user.id
+    can :read, :all
+    # if user.present?  # additional permissions for logged in users (they can read their own posts)
+    #   can :manage, Article , userid: user.id
+    #   # can :edit, Article, userid: user.id
+    # end  
 
       # user ||= User.new # guest user (not logged in)
       # if user.admin?
